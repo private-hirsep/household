@@ -2,7 +2,7 @@ import os
 from .base import *
 
 DEBUG = False
-ALLOWED_HOSTS = ["hirsep.pythonanywhere.com"]
+ALLOWED_HOSTS = ["*"]
 
 def get_env_variable(var_name):
     value = os.environ.get(var_name)
