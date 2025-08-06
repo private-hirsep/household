@@ -43,6 +43,7 @@
       <td>
         <a href="{% url 'shoppingitem-edit' si.pk %}" class="btn">Edit</a>
         <a href="{% url 'shoppingitem-delete' si.pk %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'item-list' %}" class="btn">Manage Items</a>
       </td>
     </tr>
     {% empty %}
