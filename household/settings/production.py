@@ -2,16 +2,19 @@ import os
 from .base import *
 
 DEBUG = False
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',') or ['*']
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', SECRET_KEY)
+ALLOWED_HOSTS = ["hirsep.pythonanywhere.com"]
+
+def get_env_variable(var_name):
+    value = os.environ.get(var_name)
+    if value is None:
+        raise Exception(f"Missing required environment variable: {var_name}")
+    return value
+
+SECRET_KEY = get_env_variable('DJANGO_SECRET_KEY')
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('DJANGO_DB_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': os.environ.get('DJANGO_DB_NAME'),
-        'USER': os.environ.get('DJANGO_DB_USER'),
-        'PASSWORD': os.environ.get('DJANGO_DB_PASSWORD'),
-        'HOST': os.environ.get('DJANGO_DB_HOST'),
-        'PORT': os.environ.get('DJANGO_DB_PORT', '5432'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.production.sqlite3',
     }
 }
