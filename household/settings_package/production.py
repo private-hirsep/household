@@ -18,3 +18,5 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.production.sqlite3',
     }
 }
+
+print("⚙️ Using production.py with db.production.sqlite3")
