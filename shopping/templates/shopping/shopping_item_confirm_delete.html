@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Delete Shopping Item</h1>
+<p>Are you sure you want to delete "{{ object.item.name }} ({{ object.quantity }})"?</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Confirm</button>
+  <a href="{% url 'shopping-list' %}" class="btn">Cancel</a>
+</form>
+{% endblock %}

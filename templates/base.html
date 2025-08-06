@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Household Helper</title>
+<style>
+    /* Dark Mode für den gesamten Körper */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* Der Inhalt nimmt 90 % der Fensterbreite ein, wächst aber maximal bis 1200 px */
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem;
+        background-color: #121212;
+        color: #e0e0e0;
+        font-size: 16px;        /* größere Grundschrift für bessere Lesbarkeit */
+    }
+
+    /* Navigationsleiste dezent hervorheben */
+    nav {
+        margin-bottom: 1rem;
+        background-color: #1e1e1e;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+    }
+    nav a {
+        margin-right: 1rem;
+        color: #e0e0e0;
+        text-decoration: none;
+    }
+    nav a:hover {
+        color: #ffffff;
+    }
+    
+    /* Global link styles */
+    a {
+        color: #bb86fc;         /* Akzentfarbe für Links */
+        text-decoration: underline;
+    }
+    a:visited {
+        color: #bb86fc;         /* gleiche Farbe für besuchte Links */
+    }
+    a:hover {
+        color: #985eff;         /* leichte Aufhellung beim Hover */
+    }
+
+    /* Tabellen im dunklen Stil */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #1e1e1e;
+    }
+    th, td {
+        padding: 0.6rem;
+        border-bottom: 1px solid #333;
+        text-align: left;
+    }
+    th {
+        background-color: #2a2a2a;
+        color: #fafafa;
+    }
+    tr:nth-child(even) {
+        background-color: #181818;
+    }
+
+    /* Modern styled checkbox: größer und farbig */
+    input[type="checkbox"] {
+        transform: scale(1.6);    /* vergrößert die Checkbox */
+        accent-color: #bb86fc;    /* verleiht Kästchen und Häkchen deine Akzentfarbe */
+        margin: 0 0.25rem;        /* sorgt dafür, dass sie nicht am Text klebt */
+        cursor: pointer;          /* Cursor zeigt an, dass man klicken kann */
+    }
+
+    /* Button styles für dark mode */
+    .btn {
+        display: inline-block;
+        padding: 0.35rem 0.75rem;
+        margin-right: 0.25rem;
+        background-color: #bb86fc;
+        color: #121212;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    /* Verhindert, dass :visited den Button-Text einfärbt */
+    .btn:visited {
+        color: #121212;
+    }
+
+    /* Für Delete-/Done-Buttons ebenso */
+    .btn-danger {
+        background-color: #cf6679;
+        color: #121212;
+    }
+    .btn-danger:visited {
+        color: #121212;
+    }
+</style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'task-list' %}">Home</a>
+        <a href="{% url 'shopping-list' %}">Shopping</a>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

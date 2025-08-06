@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ item.name }}</h1>
+
+<p><strong>ID:</strong> {{ item.id }}</p>
+<p><strong>Name:</strong> {{ item.name }}</p>
+<p><strong>Price:</strong> {{ item.price|floatformat:2 }}</p>
+
+<p>
+  <a href="{% url 'item-edit' item.id %}" class="btn">Edit</a>
+  <a href="{% url 'item-delete' item.id %}" class="btn btn-danger">Delete</a>
+  <a href="{% url 'shopping-list' %}" class="btn">Back to list</a>
+</p>
+{% endblock %}

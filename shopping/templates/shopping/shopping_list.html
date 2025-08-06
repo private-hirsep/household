@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Shopping List</h1>
+
+<form method="post" class="add-item-form">
+  {% csrf_token %}
+  <input type="text" name="item_name" list="item-options" placeholder="Search item…" class="search-input">
+  <datalist id="item-options">
+    {% for product in all_items %}
+      <option value="{{ product.name }}"></option>
+    {% endfor %}
+  </datalist>
+  <input type="number" name="quantity" min="1" value="1" class="quantity-input">
+  <button type="submit" class="btn">Add</button>
+  <a href="{% url 'item-add' %}" class="btn">+</a>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Done</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for si in shopping_items %}
+    <tr>
+      <td>{{ si.item.id }}</td>
+      <td><a href="{% url 'item-detail' si.item.id %}">{{ si.item.name }}</a></td>
+      <td>{{ si.quantity }}</td>
+      <td>{{ si.get_total_price|floatformat:2 }}</td>
+      <td>
+        <form method="post" action="{% url 'shoppingitem-toggle' si.pk %}">
+          {% csrf_token %}
+          <input type="checkbox" onchange="this.form.submit()" {% if si.purchased %}checked{% endif %}>
+        </form>
+      </td>
+      <td>
+        <a href="{% url 'shoppingitem-edit' si.pk %}" class="btn">Edit</a>
+        <a href="{% url 'shoppingitem-delete' si.pk %}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="6">There are no shopping items yet.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% if shopping_items %}
+<p><strong>Total items:</strong> {{ total_quantity }}</p>
+<p><strong>Total price:</strong> {{ total_price|floatformat:2 }}</p>
+{% endif %}
+{% endblock %}

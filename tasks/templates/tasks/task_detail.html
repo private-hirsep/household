@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ task.title }}</h1>
+
+<p><strong>Assignee:</strong> {{ task.get_assignee_display }}</p>
+<p><strong>Due date:</strong> {{ task.due_date|default:"—" }}</p>
+<p><strong>Completed:</strong> {{ task.completed|yesno:"Yes,No" }}</p>
+
+<h2>Details</h2>
+{% if task.details %}
+<p>{{ task.details|linebreaksbr }}</p>
+{% else %}
+<p>No details provided.</p>
+{% endif %}
+
+<p>
+  <a href="{% url 'task-list' %}" class="btn">Back to list</a>
+  <a href="{% url 'task-edit' task.pk %}" class="btn">Edit</a>
+  <a href="{% url 'task-delete' task.pk %}" class="btn btn-danger">Delete</a>
+</p>
+{% endblock %}
