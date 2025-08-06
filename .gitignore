@@ -1,0 +1,2 @@
+# ignore local database
+db.sqlite3
