@@ -7,6 +7,7 @@ from django.views.generic import (
 )
 from .models import Item, ShoppingItem
 from .forms import ItemForm, ShoppingItemForm
+from django.views import View
 
 class ShoppingListView(ListView):
     """Liste der ShoppingItems mit Suchfeld und Summen."""
@@ -93,3 +94,9 @@ class ItemDeleteView(DeleteView):
     model = Item
     template_name = "shopping/item_confirm_delete.html"
     success_url = reverse_lazy("item-list")
+
+class ClearShoppingListView(View):
+    def post(self, request, *args, **kwargs):
+        ShoppingItem.objects.filter(purchased=True).delete()
+        return redirect('shopping-list')
+    

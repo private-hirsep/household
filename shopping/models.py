@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 
 class Item(models.Model):
-    """Produktkatalog – jedes Produkt hat einen Namen und einen Preis."""
     name = models.CharField(max_length=100, unique=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
@@ -10,7 +9,6 @@ class Item(models.Model):
         return self.name
 
 class ShoppingItem(models.Model):
-    """Ein Eintrag in der Einkaufsliste: Produkt, Anzahl und ob gekauft."""
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     purchased = models.BooleanField(default=False)

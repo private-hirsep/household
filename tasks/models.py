@@ -12,7 +12,7 @@ class Task(models.Model):
     details = models.TextField(blank=True)
     assignee = models.CharField(max_length=4, choices=ASSIGNEE_CHOICES)
     due_date = models.DateField(null=True, blank=True)
-    completed = models.BooleanField(default=False)  # neu
+    completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
 

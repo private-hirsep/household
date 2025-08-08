@@ -33,7 +33,7 @@
       <td>{{ si.item.id }}</td>
       <td><a href="{% url 'item-detail' si.item.id %}">{{ si.item.name }}</a></td>
       <td>{{ si.quantity }}</td>
-      <td>{{ si.get_total_price|floatformat:2 }}</td>
+      <td>{{ si.get_total_price|floatformat:2 }} €</td>
       <td>
         <form method="post" action="{% url 'shoppingitem-toggle' si.pk %}">
           {% csrf_token %}
@@ -43,7 +43,6 @@
       <td>
         <a href="{% url 'shoppingitem-edit' si.pk %}" class="btn">Edit</a>
         <a href="{% url 'shoppingitem-delete' si.pk %}" class="btn btn-danger">Delete</a>
-        <a href="{% url 'item-list' %}" class="btn">Manage Items</a>
       </td>
     </tr>
     {% empty %}
@@ -56,6 +55,12 @@
 
 {% if shopping_items %}
 <p><strong>Total items:</strong> {{ total_quantity }}</p>
-<p><strong>Total price:</strong> {{ total_price|floatformat:2 }}</p>
+<p><strong>Total price:</strong> {{ total_price|floatformat:2 }} €</p>
 {% endif %}
+<form method="post" action="{% url 'shopping-clear' %}" style="display:inline;">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete all checked items?');">
+    Clear Items
+  </button>
+</form>
 {% endblock %}

@@ -5,7 +5,7 @@
 
 <p><strong>ID:</strong> {{ item.id }}</p>
 <p><strong>Name:</strong> {{ item.name }}</p>
-<p><strong>Price:</strong> {{ item.price|floatformat:2 }}</p>
+<p><strong>Price:</strong> {{ item.price|floatformat:2 }} €</p>
 
 <p>
   <a href="{% url 'item-edit' item.id %}" class="btn">Edit</a>

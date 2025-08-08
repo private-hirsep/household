@@ -5,6 +5,7 @@ from .models import Task
 from django.views.generic import DetailView
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import require_POST
+from django.views import View
 
 class TaskListView(ListView):
     model = Task
@@ -41,3 +42,8 @@ def toggle_complete(request, pk):
     task.completed = not task.completed
     task.save()
     return redirect('task-list')
+
+class ClearTaskListView(View):
+    def post(self, request, *args, **kwargs):
+        Task.objects.filter(completed=True).delete()
+        return redirect('task-list')

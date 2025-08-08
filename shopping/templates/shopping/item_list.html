@@ -9,7 +9,7 @@
     <tr>
       <td>{{ item.id }}</td>
       <td>{{ item.name }}</td>
-      <td>{{ item.price|floatformat:2 }}</td>
+      <td>{{ item.price|floatformat:2 }} €</td>
       <td>
         <a href="{% url 'item-edit' item.id %}" class="btn">Edit</a>
         <a href="{% url 'item-delete' item.id %}" class="btn btn-danger">Delete</a>
